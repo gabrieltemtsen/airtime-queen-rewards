@@ -14,7 +14,7 @@ This project runs an automated weekly cron job to distribute rewards to users ba
 
 1. **Clone the repository:**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/gabrieltemtsen/airtime-queen-rewards
    cd airtime-queen-rewards
    ```
 
