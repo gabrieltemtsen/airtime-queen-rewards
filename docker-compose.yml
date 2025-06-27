@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:16-alpine
+    restart: always
+    environment:
+      POSTGRES_DB: airtime_queen
+      POSTGRES_USER: steph
+      POSTGRES_PASSWORD: secure_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    restart: on-failure
+    environment:
+      ANVIL_URL: ${ANVIL_URL}
+      RPC_URL: ${RPC_URL}
+      CHAIN_ID: ${CHAIN_ID}
+      DATABASE_URL: postgres://steph:secure_password@db:5432/airtime_queen
+      PRIVATE_KEY: ${PRIVATE_KEY}
+      REWARD_APY_BPS: ${REWARD_APY_BPS}
+      MULTICALL3: ${MULTICALL3}
+      TWAB_CONTROLLER: ${TWAB_CONTROLLER}
+      VAULT: ${VAULT}
+      ZARP: ${ZARP}
+      DISPERSE: ${DISPERSE}
+    depends_on:
+      - db
+
+volumes:
+  db_data:

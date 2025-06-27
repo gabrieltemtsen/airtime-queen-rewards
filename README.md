@@ -47,6 +47,25 @@ This project runs an automated weekly cron job to distribute rewards to users ba
    ```
    After running the migration, you may want to seed your `users` table with data for testing purposes.
 
+## Running with Docker
+
+To run the application using Docker Compose:
+
+1.  **Ensure Docker is running:** Make sure your Docker daemon is active.
+
+2.  **Create your `.env` file:** The `docker-compose.yml` expects environment variables to be set in a `.env` file in the project root. Copy the example variables from the `Setup` section.
+
+3.  **Build and run the services:**
+    ```bash
+    docker-compose up --build
+    ```
+    This will:
+    *   Build the `app` service (which includes installing dependencies and running database migrations).
+    *   Start the `db` (PostgreSQL) service.
+    *   Start the `app` service, which will execute the `weekly-distribute.ts` script.
+
+    The `app` service is configured to restart on failure, and the `db` service is configured to always restart.
+
 ## Running the Cron Job
 
 To run the weekly distribution script manually:
@@ -72,16 +91,10 @@ To run the script automatically every week, you can add a new entry to your syst
 
 ## Testing
 
-To run the tests, you need to have Anvil running in a separate terminal:
-
-```bash
-anvil
-```
-
-Then, run the tests using Vitest:
+To run the tests:
 
 ```bash
 bun test
 ```
 
-The tests will use the Anvil fork to simulate the Base network and a mock TWAB controller to test the reward distribution logic.
+The test suite uses mocked database and blockchain interactions to simulate the weekly rewards distribution. It seeds 100 random accounts, sets their TWAB state to random amounts, runs the distribution script, and verifies that the correct rewards are calculated and dispersed.
