@@ -36,7 +36,7 @@ export async function runWeeklyDistribution() {
       console.log('No rewards to distribute this week.');
     }
 
-    await db.insertInto('job_runs').values({ id: Date.now(), last_run_timestamp: new Date() }).execute();
+    await db.insertInto('job_runs').values({ last_run_timestamp: new Date() }).execute();
     console.log('Weekly rewards distribution finished successfully.');
 
   } catch (error) {

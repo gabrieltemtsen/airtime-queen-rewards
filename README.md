@@ -40,7 +40,12 @@ This project runs an automated weekly cron job to distribute rewards to users ba
    ```
 
 4. **Set up the database:**
-   Make sure you have a Postgres database running and the `DATABASE_URL` is configured correctly. You will need to create the `users` and `job_runs` tables. A migration script can be added to automate this process.
+   Make sure you have a Postgres database running and the `DATABASE_URL` is configured correctly in your `.env` file.
+   Then, run the migration script to create the necessary tables (`users` and `job_runs`):
+   ```bash
+   bun run src/db/migrate.ts
+   ```
+   After running the migration, you may want to seed your `users` table with data for testing purposes.
 
 ## Running the Cron Job
 
