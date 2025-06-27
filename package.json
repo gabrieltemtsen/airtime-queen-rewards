@@ -1,0 +1,20 @@
+{
+  "name": "airtime-queen-rewards",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/pg": "^8.15.4"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "dotenv": "^16.6.0",
+    "kysely": "^0.28.2",
+    "pg": "^8.16.2",
+    "viem": "^2.31.4",
+    "vitest": "^3.2.4"
+  }
+}
