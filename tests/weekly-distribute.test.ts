@@ -86,6 +86,6 @@ describe('Weekly Rewards Distribution', () => {
 
     // 4. Verify the new job run was saved
     expect(db.insertInto).toHaveBeenCalledWith('job_runs');
-    expect(db.values).toHaveBeenCalledWith({ id: expect.any(Number), last_run_timestamp: expect.any(Date) });
+    expect(db.values).toHaveBeenCalledWith({ last_run_timestamp: expect.any(Date) });
   });
 });
